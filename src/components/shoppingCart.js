@@ -1,6 +1,6 @@
 import React from "react";
 import CartTable from "./cartTable";
-import "./shopping-cart.css";
+import "../components/shopping-cart.css";
 
 const items = [
   {
@@ -41,16 +41,16 @@ export function ShoppingCart() {
   return (
     <div classsName="cart">
       <h2>Shopping cart</h2>
-      <CartTable items={items} />
+      <CartTable items={items.filter((item) => item.inStock)} />
       <div className="actions">
-        <button>Continue checkout</button>
+        <button>Continue Checkout</button>
       </div>
 
       <h2>Sold out</h2>
-      {/*
-      TODO: A second CartTable for
-      out-of-stock items
-    */}
+      <CartTable items={items.filter((item) => !item.inStock)} />
+      <div className="actions">
+        <button>Continue Checkout</button>
+      </div>
     </div>
   );
 }
